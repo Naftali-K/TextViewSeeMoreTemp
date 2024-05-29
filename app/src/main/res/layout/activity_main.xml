@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center|top"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="5"
+            android:ellipsize="end"
+            android:text="@string/long_text"/>
+
+        <io.github.giangpham96.expandable_textview.ExpandableTextView
+            android:id="@+id/ExpandableTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:expandAction="@string/see_more"
+            app:expandActionColor="@color/magenta"
+            app:limitedMaxLines="5"
+            style="@style/text_more_style"
+            app:originalText="@string/long_text"/>
+
+        <com.colormoon.readmoretextview.ReadMoreTextView
+            android:id="@+id/readMoreTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/text2_more_style"
+            android:text="@string/long_text"/>
+
+<!--        <com.borjabravo.readmoretextview.ReadMoreTextView-->
+<!--            android:id="@+id/text_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--        <com.skyhope.showmoretextview.ShowMoreTextView-->
+<!--            android:id="@+id/showMoreTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="@string/long_text"/>-->
+
+        
+
+    </LinearLayout>
+
+</ScrollView>

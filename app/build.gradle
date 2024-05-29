@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.nk.textviewseemoretemp'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.nk.textviewseemoretemp"
+        minSdk 30
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    //expandable-text - https://github.com/giangpham96/expandable-text
+    // use both view and compose variants
+    implementation 'com.github.giangpham96:expandable-text:2.0.1'
+    // use only view variant
+    implementation 'com.github.giangpham96.expandable-text:expandable_textview:2.0.1'
+    // use only compose variant
+    implementation 'com.github.giangpham96.expandable-text:expandable_text_compose:2.0.1'
+
+
+    //readmore-textview - https://github.com/colourmoon/readmore-textview
+    implementation 'com.github.colourmoon:readmore-textview:v1.0.2'
+
+    //ReadMoreTextView - https://github.com/bravoborja/ReadMoreTextView
+//    implementation 'com.borjabravo:readmoretextview:2.1.0'
+
+//    //ShowMoreText - https://android-arsenal.com/details/1/7555
+//    implementation 'com.github.mahimrocky:ShowMoreText:1.0.2'
+
+//    //ReadMoreOption - https://p.codekk.com/detail/Android/devsideal/ReadMoreOption
+//    implementation 'com.github.devendroid:ReadMoreOption:1.0.2'
+}
