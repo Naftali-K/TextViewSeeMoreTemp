@@ -50,12 +50,17 @@ dependencies {
     //readmore-textview - https://github.com/colourmoon/readmore-textview
     implementation 'com.github.colourmoon:readmore-textview:v1.0.2'
 
-    //ReadMoreTextView - https://github.com/bravoborja/ReadMoreTextView
-//    implementation 'com.borjabravo:readmoretextview:2.1.0'
-
 //    //ShowMoreText - https://android-arsenal.com/details/1/7555
 //    implementation 'com.github.mahimrocky:ShowMoreText:1.0.2'
 
 //    //ReadMoreOption - https://p.codekk.com/detail/Android/devsideal/ReadMoreOption
 //    implementation 'com.github.devendroid:ReadMoreOption:1.0.2'
+
+
+    //ReadMoreTextView - https://github.com/bravoborja/ReadMoreTextView
+//    implementation 'com.borjabravo:readmoretextview:2.1.0' //2.0.1 - to test
+//    implementation 'com.borjabravo:readmoretextview:2.0.1'
+    // Expandable-text-with-Read-More - https://github.com/CoderFaysal/Expandable-text-with-Read-More
+    // https://youtu.be/65podSxra5U?si=vUhm-AwgcX01GTvK
+    implementation 'com.borjabravo:readmoretextview:2.1.0'
 }

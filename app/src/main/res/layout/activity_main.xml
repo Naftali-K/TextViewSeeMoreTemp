@@ -15,11 +15,21 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="5"
             android:ellipsize="end"
             android:text="@string/long_text"/>
+
+        <TextView
+            android:id="@+id/text2_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:maxLines="5"
+            android:ellipsize="end"
+            android:text="@string/short_text"/>
 
         <io.github.giangpham96.expandable_textview.ExpandableTextView
             android:id="@+id/ExpandableTextView"
@@ -40,19 +50,25 @@
             style="@style/text2_more_style"
             android:text="@string/long_text"/>
 
-<!--        <com.borjabravo.readmoretextview.ReadMoreTextView-->
-<!--            android:id="@+id/text_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"/>-->
+        <Button
+            android:id="@+id/updateTextBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="Update text"/>
 
-<!--        <com.skyhope.showmoretextview.ShowMoreTextView-->
-<!--            android:id="@+id/showMoreTextView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:text="@string/long_text"/>-->
-
-        
+        <com.borjabravo.readmoretextview.ReadMoreTextView
+            android:id="@+id/read_more_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/text2_more_style"
+            android:text="@string/long_text"
+            app:trimExpandedText="@string/see_less"
+            app:trimCollapsedText="@string/see_more"
+            app:trimMode="trimModeLine"
+            app:trimLength="25"
+            app:trimLines="2"
+            app:colorClickableText="@color/magenta" />
 
     </LinearLayout>
 
