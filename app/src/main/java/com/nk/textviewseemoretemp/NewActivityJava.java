@@ -31,12 +31,14 @@ public class NewActivityJava extends AppCompatActivity {
         setContentView(R.layout.activity_new);
         setReferences();
 
-        setShowMoreView(textView, getString(R.string.long_text));
+//        setShowMoreView(textView, getString(R.string.long_text));
+        setShowMoreView(textView, getString(R.string.long_text), R.color.red, R.color.red);
 
         updateTextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setShowMoreView(textView, "Updated text" + getString(R.string.long_text));
+//                setShowMoreView(textView, "Updated text" + getString(R.string.long_text));
+                setShowMoreView(textView, "Updated text" + getString(R.string.long_text), R.color.red, R.color.blue);
             }
         });
 
@@ -77,6 +79,18 @@ public class NewActivityJava extends AppCompatActivity {
 //            }
 //        });
 //        builder.setOnClickListener(v -> listener.invoke(message));
+        ShowMoreHelper helper = builder.build();
+//        Log.d("TAG", "onCreate: TextView: " + textView.toString());
+        helper.addShowMoreLess(textView, text, false);
+    }
+
+    private void setShowMoreView(TextView textView, String text, int colorSeeMore, int colorSeeLess) {
+        ShowMoreHelper.Builder builder = new ShowMoreHelper.Builder(textView.getContext());
+//            builder.setMoreLabelColor(colorSeeMore);
+            builder.showMoreLabelColor(colorSeeMore);
+//            builder.setLessLabelColor(colorSeeLess);
+            builder.showLessLabelColor(colorSeeLess);
+
         ShowMoreHelper helper = builder.build();
 //        Log.d("TAG", "onCreate: TextView: " + textView.toString());
         helper.addShowMoreLess(textView, text, false);

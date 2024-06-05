@@ -319,12 +319,12 @@ class ShowMoreHelper private constructor(builder: Builder) {
         }
 
         fun showMoreLabelColor(moreLabelColor: Int): Builder {
-            this.moreLabelColor = moreLabelColor
+            this.moreLabelColor = ContextCompat.getColor(context, moreLabelColor)
             return this
         }
 
         fun showLessLabelColor(lessLabelColor: Int): Builder {
-            this.lessLabelColor = lessLabelColor
+            this.lessLabelColor = ContextCompat.getColor(context, lessLabelColor)
             return this
         }
 
