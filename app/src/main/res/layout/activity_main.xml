@@ -18,7 +18,7 @@
             android:id="@+id/text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="5"
+            android:maxLines="4"
             android:ellipsize="end"
             android:text="@string/long_text"/>
 
@@ -69,6 +69,27 @@
             app:trimLength="25"
             app:trimLines="2"
             app:colorClickableText="@color/magenta" />
+
+        <Button
+            android:id="@+id/open_new_activity_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="Open new activity"/>
+
+        <Button
+            android:id="@+id/open_new_activity_java_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="Open new activity Java"/>
+
+        <Button
+            android:id="@+id/from_india_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="From India"/>
 
     </LinearLayout>
 

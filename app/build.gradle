@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -63,4 +64,7 @@ dependencies {
     // Expandable-text-with-Read-More - https://github.com/CoderFaysal/Expandable-text-with-Read-More
     // https://youtu.be/65podSxra5U?si=vUhm-AwgcX01GTvK
     implementation 'com.borjabravo:readmoretextview:2.1.0'
+
+
+    implementation 'io.github.glailton.expandabletextview:expandabletextview:1.0.4' //From India
 }
