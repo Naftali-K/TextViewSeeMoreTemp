@@ -24,6 +24,7 @@ class NewActivity : AppCompatActivity() {
 
         ShowMoreHelper
             .Builder(textView.context)
+            .showMoreLessUnderlined(true)
             .setOnClickListener {
                 Log.i("TAG", "onCreate: NewActivity 28: Clicked on text")
             }
@@ -64,6 +65,7 @@ class NewActivity : AppCompatActivity() {
 
         ShowMoreHelper
             .Builder(view.context)
+            .showMoreLessUnderlined(true)
 //            .setOnClickListener {
 //
 //            }.setOnClickListener {  }

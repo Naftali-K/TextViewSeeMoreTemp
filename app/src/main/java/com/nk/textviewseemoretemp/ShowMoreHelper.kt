@@ -6,6 +6,7 @@ import android.os.Handler
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ class ShowMoreHelper private constructor(builder: Builder) {
     // optional
     private val textLength: Int
     private val textLengthType: Int
+    private val moreLessUnderlined: Boolean
     private val moreLabel: String
     private val lessLabel: String
     private val moreLabelColor: Int
@@ -32,9 +34,9 @@ class ShowMoreHelper private constructor(builder: Builder) {
     private val textClickableInCollapse: Boolean
 
     init {
-//        this.textLength = builder.textLength
         this.textLength = builder.textLength
         this.textLengthType = builder.textLengthType
+        this.moreLessUnderlined = builder.moreLessUnderlined
         this.moreLabel = builder.moreLabel
         this.lessLabel = builder.lessLabel
         this.moreLabelColor = builder.moreLabelColor
@@ -57,7 +59,7 @@ class ShowMoreHelper private constructor(builder: Builder) {
                 textView.text = text
                 return
             }
-        } else {//TYPE_LINE
+        } else { // TYPE_LINE
             textView.maxLines = textLength
             textView.text = text
         }
@@ -138,11 +140,31 @@ class ShowMoreHelper private constructor(builder: Builder) {
             } else {
                 newSubString = trimText.subSequence(0, textLength)
             }
+
+            var startIndex = 0
+            var endIndex = 0
+
             val spannableStringBuilder = SpannableStringBuilder(
                 newSubString
             ).apply {
                 this.append("...")
+
+                Log.d(TAG, "MORE moreLessUnderlined = $moreLessUnderlined")
+
+                if (moreLessUnderlined) {
+                    startIndex = this.length
+
+                    Log.d(TAG, "MORE started Index = $startIndex")
+                }
+
                 this.append(moreLabel)
+
+                if (moreLessUnderlined) {
+                    endIndex = this.length
+                    //endIndex = startIndex + moreLabel.length
+
+                    Log.d(TAG, "MORE ended Index = $endIndex")
+                }
             }
 
             val ss = SpannableString.valueOf(spannableStringBuilder)
@@ -159,6 +181,10 @@ class ShowMoreHelper private constructor(builder: Builder) {
                 }
             }
             ss.setSpan(moreLabelClickableSpan, ss.length - moreLabel.length, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            if (moreLessUnderlined) {
+                ss.setSpan(UnderlineSpan(), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
 
             if (textClickableInExpand) {
                 if (moreLabel.isEmpty()) {
@@ -204,10 +230,30 @@ class ShowMoreHelper private constructor(builder: Builder) {
             isShowMore = false
 
             textView.maxLines = Integer.MAX_VALUE
+
+            var startIndex = 0
+            var endIndex = 0
+
             val spannableStringBuilder = SpannableStringBuilder(trimText).apply {
                 if (lessLabel.isNotEmpty()) {
                     this.append(" ")
+
+                    Log.d(TAG, "LESS moreLessUnderlined = $moreLessUnderlined")
+
+                    if (moreLessUnderlined) {
+                        startIndex = this.length
+
+                        Log.d(TAG, "LESS started Index = $startIndex")
+                    }
+
                     this.append(lessLabel)
+
+                    if (moreLessUnderlined) {
+                        endIndex = this.length
+                        //endIndex = startIndex + moreLabel.length
+
+                        Log.d(TAG, "LESS ended Index = $endIndex")
+                    }
                 }
             }
 
@@ -226,8 +272,14 @@ class ShowMoreHelper private constructor(builder: Builder) {
                     ds.color = lessLabelColor
                 }
             }
-            if (lessLabel.isNotEmpty())
+
+            if (lessLabel.isNotEmpty()) {
                 ss.setSpan(clickableSpan, ss.length - lessLabel.length, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                if (moreLessUnderlined) {
+                    ss.setSpan(UnderlineSpan(), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                }
+            }
 
             if (textClickableInCollapse) {
                 if (lessLabel.isEmpty()) {
@@ -287,10 +339,11 @@ class ShowMoreHelper private constructor(builder: Builder) {
     }
 
     class Builder(
-        val context: Context
+        private val context: Context
     ) {
         var textLength = 3
         var textLengthType = TYPE_LINE
+        var moreLessUnderlined = false
         var moreLabel = context.getString(R.string.see_more)
         var lessLabel = context.getString(R.string.see_less)
         var moreLabelColor = ContextCompat.getColor(context, R.color.magenta) //Color.parseColor("#1FB487")
@@ -301,6 +354,11 @@ class ShowMoreHelper private constructor(builder: Builder) {
         var textClickableInExpand = true
         var textClickableInCollapse = true
         var onClickListener: (() -> Unit)? = null
+
+        fun showMoreLessUnderlined(underlined: Boolean): Builder {
+            moreLessUnderlined = underlined
+            return this
+        }
 
         fun textLengthAndLengthType(length: Int, textLengthType: Int): Builder {
             this.textLength = length

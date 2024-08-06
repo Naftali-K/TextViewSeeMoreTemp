@@ -66,6 +66,7 @@ public class NewActivityJava extends AppCompatActivity {
 
     private void setShowMoreView(TextView textView, String text) {
         ShowMoreHelper.Builder builder = new ShowMoreHelper.Builder(textView.getContext());
+        builder.showMoreLessUnderlined(true);
 //        builder.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -86,6 +87,7 @@ public class NewActivityJava extends AppCompatActivity {
 
     private void setShowMoreView(TextView textView, String text, int colorSeeMore, int colorSeeLess) {
         ShowMoreHelper.Builder builder = new ShowMoreHelper.Builder(textView.getContext());
+            builder.showMoreLessUnderlined(true);
 //            builder.setMoreLabelColor(colorSeeMore);
             builder.showMoreLabelColor(colorSeeMore);
 //            builder.setLessLabelColor(colorSeeLess);

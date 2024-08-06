@@ -97,6 +97,7 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerVi
 //        });
 
         ShowMoreHelper.Builder builder = new ShowMoreHelper.Builder(textView.getContext());
+        builder.showMoreLessUnderlined(true);
 //            builder.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {

@@ -23,6 +23,7 @@
             app:readLessText="@string/see_less"
             app:textMode="line"
             app:isExpanded="false"
+            app:isUnderlined="true"
             app:expandType="layout"
             android:text="@string/long_text"/>
 
