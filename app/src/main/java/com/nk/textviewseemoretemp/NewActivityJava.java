@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nk.textviewseemoretemp.adapters.TestRecyclerViewAdapter;
 
@@ -67,6 +68,17 @@ public class NewActivityJava extends AppCompatActivity {
     private void setShowMoreView(TextView textView, String text) {
         ShowMoreHelper.Builder builder = new ShowMoreHelper.Builder(textView.getContext());
         builder.showMoreLessUnderlined(true);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Or: builder.setViewClickListener
+        builder.setOnViewClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Text clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
 //        builder.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -92,6 +104,16 @@ public class NewActivityJava extends AppCompatActivity {
             builder.showMoreLabelColor(colorSeeMore);
 //            builder.setLessLabelColor(colorSeeLess);
             builder.showLessLabelColor(colorSeeLess);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Or: builder.setViewClickListener
+        builder.setOnViewClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Text clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         ShowMoreHelper helper = builder.build();
 //        Log.d("TAG", "onCreate: TextView: " + textView.toString());

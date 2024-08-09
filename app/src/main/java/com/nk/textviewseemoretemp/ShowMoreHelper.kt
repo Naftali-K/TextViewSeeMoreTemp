@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 class ShowMoreHelper private constructor(builder: Builder) {
 
     private var onTextClickListener: (() -> Unit)? = null
+    private var onViewClickListener: (View.OnClickListener)? = null
 
     private var isShowMore = true
 
@@ -47,6 +48,7 @@ class ShowMoreHelper private constructor(builder: Builder) {
         this.textClickableInExpand = builder.textClickableInExpand
         this.textClickableInCollapse = builder.textClickableInCollapse
         this.onTextClickListener = builder.onClickListener
+        this.onViewClickListener = builder.onViewClickListener
     }
 
     fun addShowMoreLess(
@@ -70,6 +72,7 @@ class ShowMoreHelper private constructor(builder: Builder) {
                 textView.setOnClickListener {
                     if (!isShowMore) {
                         onTextClickListener?.invoke()
+                        onViewClickListener?.onClick(it)
                     }
                 }
 
@@ -191,12 +194,14 @@ class ShowMoreHelper private constructor(builder: Builder) {
                     Handler().post { //textView
                         textView.setOnClickListener {
                             onTextClickListener?.invoke()
+                            onViewClickListener?.onClick(it)
                         }
                     }
                 } else {
                     val exceptMoreLabelClickableSpan = object : ClickableSpan() {
                         override fun onClick(view: View) {
                             onTextClickListener?.invoke()
+                            onViewClickListener?.onClick(view)
                         }
 
                         override fun updateDrawState(ds: TextPaint) {
@@ -286,12 +291,14 @@ class ShowMoreHelper private constructor(builder: Builder) {
                     Handler().post { //textView
                         textView.setOnClickListener {
                             onTextClickListener?.invoke()
+                            onViewClickListener?.onClick(it)
                         }
                     }
                 } else {
                     val exceptLessLabelClickableSpan = object : ClickableSpan() {
                         override fun onClick(view: View) {
                             onTextClickListener?.invoke()
+                            onViewClickListener?.onClick(view)
                         }
 
                         override fun updateDrawState(ds: TextPaint) {
@@ -354,6 +361,7 @@ class ShowMoreHelper private constructor(builder: Builder) {
         var textClickableInExpand = true
         var textClickableInCollapse = true
         var onClickListener: (() -> Unit)? = null
+        var onViewClickListener: (View.OnClickListener)? = null
 
         fun showMoreLessUnderlined(underlined: Boolean): Builder {
             moreLessUnderlined = underlined
@@ -409,6 +417,11 @@ class ShowMoreHelper private constructor(builder: Builder) {
 
         fun setOnClickListener(listener: () -> Unit): Builder {
             this.onClickListener = listener
+            return this
+        }
+
+        fun setViewClickListener(listener: View.OnClickListener): Builder {
+            this.onViewClickListener = listener
             return this
         }
 
